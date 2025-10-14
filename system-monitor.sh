@@ -27,13 +27,16 @@ while true; do
 
  else  [ "$CPU" -le " $cpu_limit" ] && print_info "✔ Normal"
 
+fi
+
     MEM=$(free | grep Mem | awk '{print int($3/$2 * 100)}')
     echo -n "Memory Usage: $MEM% "
     if [ "$MEM" -gt "$mem_limit" ]; then
     print_alert "High Mem huryy !"
     send_email_alert "Mem alert" "Mem usage is $MEM%, above $mem_limit%!"
 
-    [ "$MEM" -le "$mem_limit" ] && print_info "✔ Normal"
+   else  [ "$MEM" -le "$mem_limit" ] && print_info "✔ Normal"
+fi
 
     DISK=$(df / | tail -1 | awk '{print int($5)}')
     echo -n "Disk Usage: $DISK% "
@@ -41,7 +44,8 @@ while true; do
     print_alert "disk about to explodeee"
     send_email_alert "DISKK Alert" "disk usage is $DISK%, above $disk_limit%!"
 
-    [ "$DISK" -le "$disk_limit" ] && print_info "✔ Normal"
+    else [ "$DISK" -le "$disk_limit" ] && print_info "✔ Normal"
+fi
 
     echo "$(date): CPU=$CPU%, MEM=$MEM%, DISK=$DISK%" >> "$log_file"
 

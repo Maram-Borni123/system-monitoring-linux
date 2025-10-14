@@ -34,6 +34,9 @@ while true; do
     read -p "Do you want to exit? (y/n): " choice
     if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
         echo "Exiting system monitor..."
+        git add system-monitor.sh system-monitor.log README.md
+        git commit -m "updates $(date)"
+        git push origin main
         break   
     else  
         sleep 2

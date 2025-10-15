@@ -31,7 +31,7 @@ fi
 
     DISK=$(df / | tail -1 | awk '{print int($5)}')
     echo -n "Disk Usage: $DISK% "
-    if (( "$DISK" > "$disk_limit" )); then
+    if (( DISK > disk_limit )); then
     print_alert "disk about to explodeee"
 
     else print_info "✔ Normal"

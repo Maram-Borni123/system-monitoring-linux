@@ -1,7 +1,7 @@
 #!/bin/bash
-cpu_limit=${1:70}
-mem_limit=${2:80}
-disk_limit=${3:80}
+cpu_limit=70
+mem_limit=70
+disk_limit=70
 log_file="system-monitor.log"
 
 print_alert() { echo -e "\e[31m  $1\e[0m"; }
